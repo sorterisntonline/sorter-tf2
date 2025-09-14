@@ -39,12 +39,14 @@
         (def rel rel)
         ;; Then, resolve the children via glob and create the links.
         (doseq [glob-pattern (:children_glob rel)]
-          (def glob-pattern glob-pattern)
-          (let [child-files (fs/glob (fs/parent rel-file) "*")]
-            (println fs-glob)
+          (println glob-pattern)
+          (println (fs/parent rel-file))
+          (println (fs/glob (fs/parent rel-file) glob-pattern))
+          (let [child-files (fs/glob (fs/parent rel-file) glob-pattern)]
+
             (println child-files)
             (doseq [child-file child-files]
-              (let [child-entity (-> child-file slurp (json/parse-string true))
+              (let [child-entity (-> child-file fs/file slurp (json/parse-string true))
                     relationship-payload
                     {:parent_pk_namespace (get-in rel [:parent :pk_namespace])
                      :parent_pk           (get-in rel [:parent :pk])
@@ -54,6 +56,3 @@
 
 (println "\nCompilation complete.")
 
-;; Execute the main function if the script is run directly.
-(when (= *file* (System/getProperty "babashka.main"))
-  (-main))
