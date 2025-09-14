@@ -2,7 +2,7 @@
   "pk_namespace": "tf2.class",
   "pk": "engineer",
   "title": "Engineer",
-  "profile_picture_url": "https://wiki.teamfortress.com/w/images/thumb/9/9f/Engineer.png/520px-Engineer.png",
+  "profile_picture_url": "https://wiki.teamfortress.com/w/images/d/d8/Engineer.png",
   "metadata": {
     "description": "The Engineer is a builder and support class who constructs defensive structures like sentry guns, dispensers, and teleporters to control territory and aid teammates.",
     "role": "Defense",
