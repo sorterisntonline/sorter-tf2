@@ -2,8 +2,8 @@
          '[cheshire.core :as json]
          '[babashka.http-client :as http])
 
-(def SORTER_API_BASE_URL "http://localhost:8081/api")
-(def SORTER_API_KEY "STATIC_TEST_KEY_FOR_ADMIN_USER_123")
+(def SORTER_API_BASE_URL (System/getenv "SORTER_API_BASE_URL"))
+(def SORTER_API_KEY (System/getenv "SORTER_API_KEY"))
 
 (when (or (empty? SORTER_API_BASE_URL) (empty? SORTER_API_KEY))
   (println "ERROR: SORTER_API_URL and SORTER_API_KEY environment variables must be set.")
