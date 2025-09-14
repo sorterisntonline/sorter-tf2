@@ -1,0 +1,11 @@
+{
+  "pk_namespace": "tf2.class",
+  "pk": "demoman",
+  "title": "Demoman",
+  "profile_picture_url": "https://wiki.teamfortress.com/w/images/thumb/5/5f/Demoman.png/520px-Demoman.png",
+  "metadata": {
+    "description": "The Demoman is an explosives expert who excels at area denial and destroying enemy structures. His sticky bombs can be detonated remotely for devastating effect.",
+    "role": "Defense",
+    "source_url": "https://wiki.teamfortress.com/wiki/Demoman"
+  }
+}

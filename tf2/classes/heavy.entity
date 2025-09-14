@@ -1,0 +1,11 @@
+{
+  "pk_namespace": "tf2.class",
+  "pk": "heavy",
+  "title": "Heavy",
+  "profile_picture_url": "https://wiki.teamfortress.com/w/images/thumb/9/95/Heavy.png/520px-Heavy.png",
+  "metadata": {
+    "description": "The Heavy is a massive, heavily-armored class armed with a minigun. He excels at area control and sustained damage output, but is vulnerable while revving up.",
+    "role": "Defense",
+    "source_url": "https://wiki.teamfortress.com/wiki/Heavy"
+  }
+}

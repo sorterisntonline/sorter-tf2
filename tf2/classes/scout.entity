@@ -1,0 +1,11 @@
+{
+  "pk_namespace": "tf2.class",
+  "pk": "scout",
+  "title": "Scout",
+  "profile_picture_url": "https://wiki.teamfortress.com/w/images/thumb/8/81/Scout.png/520px-Scout.png",
+  "metadata": {
+    "description": "The Scout is a fast, agile class built for flanking and capturing objectives. He is the fastest class in the game, and his Double Jump ability leaves slower opponents struggling to keep up.",
+    "role": "Offense",
+    "source_url": "https://wiki.teamfortress.com/wiki/Scout"
+  }
+}

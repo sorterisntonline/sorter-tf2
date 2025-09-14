@@ -1,0 +1,11 @@
+{
+  "pk_namespace": "tf2.class",
+  "pk": "pyro",
+  "title": "Pyro",
+  "profile_picture_url": "https://wiki.teamfortress.com/w/images/thumb/1/1d/Pyro.png/520px-Pyro.png",
+  "metadata": {
+    "description": "The Pyro is a mysterious, fire-wielding class specializing in close-range combat and area denial. Their flamethrower can ignite enemies and projectiles alike.",
+    "role": "Offense",
+    "source_url": "https://wiki.teamfortress.com/wiki/Pyro"
+  }
+}
