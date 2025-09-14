@@ -12,14 +12,14 @@
 
 (defn post-to-api [endpoint data]
   (println "POST ->" endpoint)
-  (def data data)
   (let [payload (json/generate-string data)
         response (http/post (str SORTER_API_BASE_URL endpoint)
                             {:headers {"Content-Type" "application/json"
                                        "Authorization" (str "Bearer " SORTER_API_KEY)}
+                             :query-params {"upsert" "true"}
                              :body payload})]
-    (when (not (zero? (:status response)))
-      (println "  ERROR: HTTP" (:status response) (:body response)))))
+    (when (not= 200 (:status response))
+      (println "HTTP" (:status response) (:body response)))))
 
 (println "--- PASS 1: Ingesting Entities ---")
 (let [entity-files (fs/glob "." "**/*.entity")]
@@ -30,16 +30,19 @@
 ;; --- PASS 2: Ingest all relationships (Edges) ---
 ;; This creates the parent "collection" entities and wires up the children.
 (println "\n--- PASS 2: Ingesting Relationships ---")
-(let [relationship-files (fs/glob "." "**/*.relationship")]
+(let [relationship-files (fs/glob "." "**/*.relationships")]
   (doseq [rel-file relationship-files]
-    (let [relationships (-> rel-file slurp (json/parse-string true))]
+    (def rel-file rel-file)
+    (let [relationships (-> rel-file fs/file slurp (json/parse-string true))]
       (doseq [rel relationships]
         ;; First, create the parent "collection" entity itself.
-        (post-to-api "/entity" (:parent rel))
-
+        (def rel rel)
         ;; Then, resolve the children via glob and create the links.
         (doseq [glob-pattern (:children_glob rel)]
-          (let [child-files (fs/glob (fs/parent rel-file) glob-pattern)]
+          (def glob-pattern glob-pattern)
+          (let [child-files (fs/glob (fs/parent rel-file) "*")]
+            (println fs-glob)
+            (println child-files)
             (doseq [child-file child-files]
               (let [child-entity (-> child-file slurp (json/parse-string true))
                     relationship-payload
