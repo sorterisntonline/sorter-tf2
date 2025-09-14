@@ -5,7 +5,7 @@
       "pk": "tf2-classes"
     },
     "children_glob": [
-      "./classes/*.entity"
+      "classes/*.entity"
     ]
   }
 ]
