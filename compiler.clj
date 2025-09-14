@@ -24,13 +24,13 @@
 
 (println "--- PASS 1: Ingesting Entities ---")
 
-(let [entity-files (fs/glob "." "**/*.entity")]
+(let [entity-files (fs/glob "." "**/*.entity.json")]
   (doseq [file entity-files]
     (post-to-api "/entity" (read-file file))))
 
 (println "\n--- PASS 2: Ingesting Relationships ---")
 
-(doseq [rel-file (fs/glob "." "**/*.relationships")]
+(doseq [rel-file (fs/glob "." "**/*.relationships.json")]
   (doseq [rel (read-file rel-file)]
     (doseq [glob-pattern (:children_glob rel)]
       (doseq [child-file (fs/glob (fs/parent rel-file) glob-pattern)]
