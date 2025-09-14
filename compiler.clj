@@ -20,20 +20,21 @@
     (when (not= 200 (:status response))
       (println "HTTP" (:status response) (:body response)))))
 
+(defn read-file [file] (-> file fs/file slurp (json/parse-string true)))
+
 (println "--- PASS 1: Ingesting Entities ---")
 
 (let [entity-files (fs/glob "." "**/*.entity")]
   (doseq [file entity-files]
-    (post-to-api "/entity"
-                 (-> file fs/file slurp (json/parse-string true)))))
+    (post-to-api "/entity" (read-file file))))
 
 (println "\n--- PASS 2: Ingesting Relationships ---")
 
 (doseq [rel-file (fs/glob "." "**/*.relationships")]
-  (doseq [rel (-> rel-file fs/file slurp (json/parse-string true))]
+  (doseq [rel (read-file rel-file)]
     (doseq [glob-pattern (:children_glob rel)]
       (doseq [child-file (fs/glob (fs/parent rel-file) glob-pattern)]
-        (let [child-entity (-> child-file fs/file slurp (json/parse-string true))]
+        (let [child-entity (read-file child-file)]
           (post-to-api "/entity_relationships"
                        {:parent_pk_namespace (get-in rel [:parent :pk_namespace])
                         :parent_pk           (get-in rel [:parent :pk])
